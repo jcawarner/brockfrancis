@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<style type="text/css">
+	.center{
+		text-align: center;
+	}
+</style>
+<div class="center"><br><br><br><br>
+	<h1>Inventory</h1><br><br>
+</div>
+<div class="container">
+<table class="table table-info table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col"># Quantity</th>
+      <th scope="col">Drill Diameter</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Add</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for key,value in count.items %}
+    <tr>
+      <th scope="row">{{value}}</th>
+      <td>{{key}}</td>
+      <td><a href="">Edit</a></td>
+      <td><a href="">Add</a></td>
+      <td><a href="">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{{casting}}
+{% endblock %}

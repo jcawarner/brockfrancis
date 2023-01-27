@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style type="text/css">
+	.center{
+		text-align: center;
+	}
+</style>
+<div class="center"><br><br><br><br>
+	<h1>Drill Created</h1><br><br>
+	<h1>{{created}}</h1><br>
+	<a href="{% url 'inventory' %}"><button type="button" class="btn btn-warning btn-lg">Inventory</button></a>
+	<a href="{% url 'save' %}"><button type="button" class="btn btn-success btn-lg">Save Drill</button></a>
+	<a href="{% url 'center_created' center %}"><button type="button" class="btn btn-success btn-lg">Center</button></a>
+</div>
+{% endblock %}
+
