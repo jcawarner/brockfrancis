@@ -40,5 +40,35 @@ class CenterQuantity(models.Model):
 	def __str__(self):
 		return f"{self.quantity} of {self.center}"
 
+#### Brock's Model ####
+
+INSERT_GRADES = [
+	("T22", "T22"),
+	("NTA", "NTA"),
+	("FK20M", "FK20M"),
+	]
+
+class BrockCenterInsert(models.Model):
+	item_code = models.CharField(max_length=31, unique=True)
+	models.SlugField(blank=True, null=True)
+	grade = models.CharField(max_length=5, choices=INSERT_GRADES, blank=True, Null=True)
+	quantity_in_stock = models.IntegerField()
+
+	class Meta:
+		ordering = ["item_code"]
+
+	def __str__(self):
+		return str(self.item_code)
+
+	def save(self, *args, **kwargs):
+		self.item_code = self.item_code.upper()
+		if self.slug is None:
+			self.slug = slugify(self.item_code)
+		if self.grade is None:
+			split_item_code = self.item_code.split("-")
+			for i in INSERT_GRADES:
+				if i[0] == split_item_code[-1]:
+					self.grade = i[0]
+		super().save(*args, **kwargs)
 
 	
